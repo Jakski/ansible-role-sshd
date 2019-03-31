@@ -1,0 +1,31 @@
+---
+- name: Install sshd
+  apt:
+    name: "{{ sshd_package }}"
+    default_release: "{{ sshd_package_release | default(omit) }}"
+    state: present
+  notify:
+    - Restart sshd
+
+- name: "{{ sshd_enable | ternary('Enable', 'Disable') }} sshd service"
+  service:
+    name: "{{ sshd_service }}"
+    enabled: "{{ sshd_enable }}"
+
+- name: Create sshd_config file
+  template:
+    src: "{{ sshd_config_template }}"
+    dest: "{{ sshd_config_dir }}/sshd_config"
+    owner: root
+    group: root
+    mode: 0644
+  notify:
+    - Reload sshd
+
+- name: Create ssh_config file
+  template:
+    src: "{{ sshd_client_config_template }}"
+    dest: "{{ sshd_config_dir }}/ssh_config"
+    owner: root
+    group: root
+    mode: 0644

@@ -1,0 +1,10 @@
+{% for key, value in ((_sshd_config | combine(sshd_config, recursive=True)).settings | default({})).items() %}
+{{ key }} {{ value }}
+{% endfor %}
+{% for match, settings in ((_sshd_config | combine(sshd_config, recursive=True)).matches | default({})).items() %}
+
+Match {{ match }}
+{% for key, value in settings.items() %}
+	{{ key }} {{ value }}
+{% endfor %}
+{% endfor %}

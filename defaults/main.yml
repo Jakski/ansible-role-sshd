@@ -1,0 +1,43 @@
+###
+# Packages with sshd
+sshd_package: openssh-server
+
+###
+# Enable sshd service
+sshd_enable: true
+
+###
+# sshd service name
+sshd_service: ssh
+
+###
+# Restart sshd when necessary
+sshd_restart: true
+
+###
+# Reload sshd when necessary
+sshd_reload: true
+
+###
+# Configuration directory
+sshd_config_dir: /etc/ssh
+
+###
+# sshd_config file template
+sshd_config_template: sshd_config.j2
+
+###
+# ssh_config file template
+sshd_client_config_template: ssh_config.j2
+
+###
+# sshd server configuration
+#
+# For default values see _sshd_config
+sshd_config: {}
+
+###
+# sshd global client configuration
+#
+# For default values see _sshd_client_config
+sshd_client_config: {}

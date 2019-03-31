@@ -1,0 +1,20 @@
+---
+- hosts: instance
+  tasks:
+    - import_role:
+        name: sshd
+      vars:
+        sshd_config:
+          settings:
+            PermitRootLogin: "no"
+            X11Forwarding: "no"
+          matches:
+            'User test':
+              PermitTTY: "no"
+        sshd_client_config:
+          settings:
+            User: "test"
+          hosts:
+            '*':
+              Port: 23
+

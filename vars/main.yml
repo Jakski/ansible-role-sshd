@@ -1,0 +1,15 @@
+---
+_sshd_config:
+  settings:
+    ChallengeResponseAuthentication: "no"
+    UsePAM: "yes"
+    X11Forwarding: "yes"
+    PrintMotd: "no"
+    AcceptEnv: "LANG LC_*"
+    Subsystem: "sftp /usr/lib/openssh/sftp-server"
+
+_sshd_client_config:
+  '*':
+    SendEnv: "LANG LC_*"
+    HashKnownHosts: "yes"
+    GSSAPIAuthentication: "yes"

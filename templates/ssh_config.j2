@@ -1,0 +1,10 @@
+{% for key, value in ((_sshd_client_config | combine(sshd_client_config, recursive=True)).settings | default({})).items() %}
+{{ key }} {{ value }}
+{% endfor %}
+{% for host, settings in ((_sshd_client_config | combine(sshd_client_config, recursive=True)).hosts | default({})).items() %}
+
+Host {{ host }}
+{% for key, value in settings.items() %}
+	{{ key }} {{ value }}
+{% endfor %}
+{% endfor %}

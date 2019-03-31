@@ -1,0 +1,16 @@
+---
+- name: Restart sshd
+  service:
+    name: "{{ sshd_service }}"
+    state: restarted
+  register: _sshd_restarted
+  when: sshd_restart
+
+- name: Reload sshd
+  service:
+    name: "{{ sshd_service }}"
+    state: reloaded
+  when: >
+    sshd_reload and
+    (_sshd_restarted is not defined or
+    _sshd_restarted is not changed)
