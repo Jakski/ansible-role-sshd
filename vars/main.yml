@@ -9,7 +9,8 @@ _sshd_config:
     Subsystem: "sftp /usr/lib/openssh/sftp-server"
 
 _sshd_client_config:
-  '*':
-    SendEnv: "LANG LC_*"
-    HashKnownHosts: "yes"
-    GSSAPIAuthentication: "yes"
+  hosts:
+    '*':
+      SendEnv: "LANG LC_*"
+      HashKnownHosts: "yes"
+      GSSAPIAuthentication: "yes"
